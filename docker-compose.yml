@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  app:
+    image: yesbhautik/linkedin-privateapi:latest
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    volumes:
+      - ./cookies.json:/usr/src/app/cookies.json
+    command: >
+      sh -c "if [ \"$DB_MODE\" = \"True\" ]; then python app-db.py; else python app.py; fi"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: yourusername
+      POSTGRES_PASSWORD: yourpassword
+      POSTGRES_DB: yourdbname
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:

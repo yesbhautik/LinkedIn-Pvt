@@ -1,0 +1,4 @@
+data/
+myenv/
+.env
+cookies.json

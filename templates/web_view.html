@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LinkedIn Profile Data</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+  </head>
+  <body>
+    <h1>
+      LinkedIn Profile Data for {{ data['profile'].get('firstName', 'Unknown')
+      }} {{ data['profile'].get('lastName', '') }}
+    </h1>
+    <h2>Profile Information</h2>
+    <pre>{{ data['profile'] | tojson(indent=2) }}</pre>
+
+    <h2>Contact Information</h2>
+    <pre>{{ data['contact_info'] | tojson(indent=2) }}</pre>
+
+    <h2>Experiences</h2>
+    <pre>{{ data['experiences'] | tojson(indent=2) }}</pre>
+
+    <h2>Skills</h2>
+    <pre>{{ data['skills'] | tojson(indent=2) }}</pre>
+
+    <h2>Connections</h2>
+    <pre>{{ data['connections'] | tojson(indent=2) }}</pre>
+  </body>
+</html>
